@@ -113,11 +113,12 @@ ipconfig
 WSL에서:
 ```bash
 hostname -I
+```
 
 ### 7.1 Windows 터미널 1: 하드웨어 브리지 실행 (UDP 9999 수신 → Beagle 구동)
 ```PowerShell
 python {프로그램_경로}\beagle_udp_bridge.py
-
+```
 **정상 체크**
 - Listening UDP ... :9999 같은 수신 대기 로그가 떠야 함
 - 이후 명령 수신 시 [RECV] linear_x=..., angular_z=... 로그가 찍혀야 함
@@ -126,7 +127,7 @@ python {프로그램_경로}\beagle_udp_bridge.py
 ```bash
 source /opt/ros/humble/setup.bash
 python3 mvp_line_follow_controller_node_ver2.py
-
+```
 **정상 체크**
 - UDP 10002 수신 대기 로그가 떠야 함
 - (Vision Sender 실행 후) /cmd_vel이 0이 아닌 값으로 변해야 함
@@ -136,7 +137,7 @@ python3 mvp_line_follow_controller_node_ver2.py
 source /opt/ros/humble/setup.bash
 python3 wsl2_cmdvel_udp_sender.py --ros-args -p win_ip:=172.17.16.1 -p win_port:=9999
 ⚠️ 중요: win_ip는 반드시 Windows vEthernet(WSL) IP를 넣어야 함 (예: 172.17.16.1)
-
+```
 **정상 체크**
 - /cmd_vel 구독 시작 로그
 - /cmd_vel 발생 시 Windows Bridge에서 수신 로그가 찍혀야 함
@@ -146,7 +147,7 @@ python3 wsl2_cmdvel_udp_sender.py --ros-args -p win_ip:=172.17.16.1 -p win_port:
 python {프로그램_경로}\line_follow_sender_ver2.py --show \
   --source "http://192.168.66.1:9527/videostream.cgi?loginuse=admin&loginpas=admin" \
   --wsl-ip 172.17.20.88 --wsl-port 10002
-
+```
 **정상 체크**
 - 표시 창에서 found=True가 자주 뜨고 m00가 충분히 크게 유지
 - 라인이 잡히면 WSL 제어 노드가 /cmd_vel 생성 → Windows Bridge가 수신 → 모터 구동
