@@ -104,9 +104,10 @@
 ### 7.0 사전 확인 (필수)
 
 #### WSL IP 확인 (Windows → WSL 전송 목적지)
-PowerShell에서:
+Windows PowerShell에서:
 ```PowerShell
 ipconfig
+```
 
 #### Windows IP 확인 (WSL → Windows 전송 목적지)
 WSL에서:
